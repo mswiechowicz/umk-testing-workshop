@@ -1,13 +1,14 @@
-import { greetings } from './greetings';
+import { greetings, greetingsRandom } from './greetings';
 import { config } from '../../utils/config';
+import { random } from '../../utils/random';
 
 describe('greetings', () => {
 	test('should return correct greeting for given name', () => {
-		// given
+		// setup
 		const originalConfig = config.lang;
+		config.lang = 'en';
 
 		// when
-		config.lang = 'en';
 		const result = greetings('Joe');
 
 		// then
@@ -15,5 +16,22 @@ describe('greetings', () => {
 
 		// cleanup
 		config.lang = originalConfig;
+	});
+});
+
+describe('greetings random', () => {
+	test('should return greetings when name is not given', () => {
+		//given
+		const originalRandom = random.getRandomListElement;
+		random.getRandomListElement = jest.fn(() => 'Hi');
+
+		//when
+		const result = greetingsRandom();
+
+		//then
+		expect(result).toEqual('Hi nameless');
+
+		//cleanup
+		random.getRandomListElement = originalRandom;
 	});
 });

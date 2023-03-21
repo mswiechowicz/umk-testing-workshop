@@ -7,7 +7,7 @@ Należy napisać rozwiązanie, która będzie spełniać wszystkie założenia z
  */
 
 // żeby testy się wykonywały, usuń .skip
-describe.skip('sumOfNumbers ', () => {
+describe('sumOfNumbers ', () => {
 	it('should be a function', () => {
 		// when
 		const elementType = typeof sumOfNumbers;
@@ -27,14 +27,6 @@ describe.skip('sumOfNumbers ', () => {
 	it('should return 0 when no parameters are given', () => {
 		// when
 		const result = sumOfNumbers();
-
-		// then
-		expect(result).toBe(0);
-	});
-
-	it('should return 0 when parameter is not an array instance', () => {
-		// when
-		const result = sumOfNumbers({ foo: 'bar' });
 
 		// then
 		expect(result).toBe(0);

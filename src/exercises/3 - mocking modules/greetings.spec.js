@@ -4,6 +4,12 @@ jest.mock('../../utils/config', () => ({
 	config: { lang: 'en' },
 }));
 
+jest.mock('../../utils/random', () => ({
+	random: {
+		getRandomListElement: jest.fn(() => 'Siemano'),
+	},
+}));
+
 describe('greetings', () => {
 	test('should return correct greeting for given name', () => {
 		// when
@@ -12,12 +18,14 @@ describe('greetings', () => {
 		// then
 		expect(result).toEqual('Hello Joe!');
 	});
+});
 
+describe('greetingsRandom', () => {
 	test('should return correct greeting for given name', () => {
 		// when
-		const result = greetings('Joe');
+		const result = greetingsRandom('Joe');
 
 		// then
-		expect(result).toEqual('Hello Joe!');
+		expect(result).toEqual('Siemano Joe!');
 	});
 });
